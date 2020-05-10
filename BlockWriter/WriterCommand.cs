@@ -25,7 +25,7 @@ namespace BlockWriter
             "-d|--delay",
             "Number of milliseconds to delay between printing individual lines of characters.",
             optionType: CommandOptionType.SingleValue)]
-        [Range(1, 250)]
+        [Range(0, 500)]
         public int Delay { get; } = 0;
 
         public WriterCommand(IBlockWriter writer, IFileSystem fs)
@@ -36,19 +36,9 @@ namespace BlockWriter
 
         public void OnExecute()
         {
-            if (Delay > 0)
+            foreach (string line in LinesToPrint())
             {
-                foreach (string line in LinesToPrint())
-                {
-                    writer.Write(line, Delay);
-                }
-            }
-            else
-            {
-                foreach (string line in LinesToPrint())
-                {
-                    writer.Write(line);
-                }
+                writer.Write(line, Delay);
             }
         }
 
