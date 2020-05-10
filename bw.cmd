@@ -1,0 +1,1 @@
+dotnet run -c debug -p BlockWriter\BlockWriter.csproj -- %*
