@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO.Abstractions;
+using System.Threading;
 
 namespace BlockWriter
 {
@@ -38,7 +39,15 @@ namespace BlockWriter
         {
             foreach (string line in LinesToPrint())
             {
-                writer.Write(line, Delay);
+                if (line.Trim() == "-")
+                {
+                    Thread.Sleep(2 * Delay);
+                    writer.Write(" ", Delay);
+                }
+                else
+                {
+                    writer.Write(line, Delay);
+                }
             }
         }
 
