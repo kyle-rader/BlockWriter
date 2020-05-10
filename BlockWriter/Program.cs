@@ -1,5 +1,6 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO.Abstractions;
 
 namespace BlockWriter
 {
@@ -11,6 +12,7 @@ namespace BlockWriter
 
             var additionalServices = new ServiceCollection()
                 .AddSingleton<IConsole>(PhysicalConsole.Singleton)
+                .AddSingleton<IFileSystem, FileSystem>()
                 .AddSingleton<IBlockWriter, Writer>()
                 .BuildServiceProvider();
 
@@ -19,7 +21,6 @@ namespace BlockWriter
                 .UseConstructorInjection(additionalServices);
 
             app.Execute(args);
-
         }
     }
 }

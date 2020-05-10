@@ -5,7 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>bw</AssemblyName>
     <StartupObject>BlockWriter.Program</StartupObject>
-
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+    
     <PublishTrimmed>true</PublishTrimmed>
     <PublishSingleFile>true</PublishSingleFile>
   </PropertyGroup>
@@ -14,6 +15,7 @@
     <PackageReference Include="FIGlet.Net" Version="1.1.1" />
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
+    <PackageReference Include="System.IO.Abstractions" Version="11.0.6" />
   </ItemGroup>
 
 </Project>
