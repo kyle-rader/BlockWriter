@@ -19,11 +19,18 @@ This is a program for writing out text in block letters.
    cd BlockWriter
    ```
 
-* You can run the app using the `bw.cmd` script (Windows only) and passing in arguments and options for `bw`. For example, you can print the `.gitignore` file by running:
+* You can run the app using the `bw.cmd` script (Windows only) and passing in arguments and options for `bw`. For example, you can print the words `Hello World` by running:
+   ```
+   bw Hello World
+   ```
+   Or you can print the `.gitignore` file by running:
    ```
    bw --file .gitignore
    ```
-   This script will build and run the program with the given args. Building every time is slow and useful for development and rapid iteration.
+   You can add a delay to the printing using the `-d` flag. Try running:
+   ```
+   bw -d 175 Hello World
+   ```
 
 * For a faster _release_ version we can publish the app creating a _distributal_ version by running:
    ```
