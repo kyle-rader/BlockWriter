@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace BlockWriter
 {
     [Command(
-        Name = "bw", 
+        Name = "bw",
         Description = "Block Writer. Print Figlet block text")]
     class WriterCommand
     {
@@ -17,11 +17,11 @@ namespace BlockWriter
         public string InputFile { get; }
 
         [Option(
-            "-d|--delay", 
+            "-d|--delay",
             "Number of milliseconds to delay between printing individual lines of characters.",
             optionType: CommandOptionType.SingleValue)]
-        [Range(0, 250)]
-        public int Delay { get; }
+        [Range(1, 250)]
+        public int Delay { get; } = 0;
 
         public WriterCommand(IBlockWriter writer)
         {
@@ -30,7 +30,14 @@ namespace BlockWriter
 
         public void OnExecute()
         {
-            writer.Write(string.Join(" ", Input));
+            if (Delay > 0)
+            {
+                writer.Write(string.Join(" ", Input), Delay);
+            }
+            else
+            {
+                writer.Write(string.Join(" ", Input));
+            }
         }
     }
 }

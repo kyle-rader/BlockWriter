@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace BlockWriter
+﻿namespace BlockWriter
 {
     internal interface IBlockWriter
     {
-        void Write(string text);
+        void Write(string input);
+        void Write(string input, int delay);
     }
 }
