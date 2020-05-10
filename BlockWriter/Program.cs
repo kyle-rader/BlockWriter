@@ -7,26 +7,16 @@ namespace BlockWriter
     {
         static void Main(string[] args)
         {
-            CommandLineApplication app = new CommandLineApplication();
+            CommandLineApplication app = new CommandLineApplication<WriterCommand>();
 
             var additionalServices = new ServiceCollection()
                 .AddSingleton<IConsole>(PhysicalConsole.Singleton)
                 .AddSingleton<IBlockWriter, Writer>()
                 .BuildServiceProvider();
 
-            app.Conventions.UseConstructorInjection(additionalServices);
-            
-            app.AddName("bw");
-            app.Description = "An app for printing block text!";
-            app.HelpOption("-h|--help");
-
-            var inputArg = app.Argument("Input", "Text to print", multipleValues: true);
-
-            app.OnExecute(() =>
-            {
-                var writer = app.GetRequiredService<IBlockWriter>();
-                writer.Write(string.Join(" ", inputArg.Values));
-            });
+            app.Conventions
+                .UseDefaultConventions()
+                .UseConstructorInjection(additionalServices);
 
             app.Execute(args);
 
